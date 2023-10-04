@@ -339,8 +339,8 @@ export const detailSaleUpdateByDevice = async (topic: string, message) => {
     let data: any[] = message.split(regex);
     // console.log("wk");
     // let [saleLiter, totalPrice] = deviceLiveData.get(data[0]);
-    let saleLiter = deviceLiveData.get(data[0])?.[0];
-    let totalPrice = deviceLiveData.get(data[0])?.[1];
+    let saleLiter = data[2]
+    let totalPrice = data[3]
 
     let query = {
       nozzleNo: data[0],
