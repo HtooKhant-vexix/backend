@@ -17,7 +17,8 @@ import {cardRead} from './service/rfid.service'
 import { detailSaleUpdateByDevice } from "./service/detailSale.service";
 import dailyPriceRoute from "./router/dailyPrice.routes";
 import dbConnect, { client, connect } from "./utils/connect";
-// import blinkLed, { lowLed } from "./connection/ledBlink"; htookhant
+import blinkLed, { lowLed } from "./connection/ledBlink";
+// htookhant
 import initialSetupRoute from "./router/initialSetup.routes";
 import { rp } from "./migrations/migrator";
 
@@ -38,8 +39,9 @@ client.on("message", async (topic, message) => {
   // }
 
   if (data[2] == "active") {
-     // blinkLed(Number(data[3])); htookhant
+     blinkLed(Number(data[3]));
   }
+  //htookhant
 
   if(data[2] == "rfid" && data[1] == "device"){
     // console.log(message.toString())
@@ -118,13 +120,15 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   });
 });
 
-// const defaultData = async () => {
-//   lowLed();
-//
-//   await rp();
-// }; htookhant
+const defaultData = async () => {
+  lowLed();
 
-// defaultData(); htookhant
+  await rp();
+};
+//htookhant
+
+defaultData();
+//htookhant
 
 server.listen(port, () =>
   console.log(`server is running in  http://${host}:${port}`)
