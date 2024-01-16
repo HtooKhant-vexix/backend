@@ -13,10 +13,11 @@ import dailyReportRoute from "./router/dailyReport.routes";
 import fuelBalanceRoute from "./router/fuelBalance.routes";
 import fuelInRoute from "./router/fuelIn.routes";
 import { liveDataChangeHandler } from "./connection/liveTimeData";
+import {cardRead} from './service/rfid.service'
 import { detailSaleUpdateByDevice } from "./service/detailSale.service";
 import dailyPriceRoute from "./router/dailyPrice.routes";
 import dbConnect, { client, connect } from "./utils/connect";
-import blinkLed, { lowLed } from "./connection/ledBlink";
+// import blinkLed, { lowLed } from "./connection/ledBlink"; htookhant
 import initialSetupRoute from "./router/initialSetup.routes";
 import { rp } from "./migrations/migrator";
 
@@ -37,7 +38,12 @@ client.on("message", async (topic, message) => {
   // }
 
   if (data[2] == "active") {
-     blinkLed(Number(data[3]));
+     // blinkLed(Number(data[3])); htookhant
+  }
+
+  if(data[2] == "rfid" && data[1] == "device"){
+    // console.log(message.toString())
+    cardRead(message.toString())
   }
 
   if (data[2] == "Final") {
@@ -112,13 +118,13 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   });
 });
 
-const defaultData = async () => {
-  lowLed();
+// const defaultData = async () => {
+//   lowLed();
+//
+//   await rp();
+// }; htookhant
 
-  await rp();
-};
-
-defaultData();
+// defaultData(); htookhant
 
 server.listen(port, () =>
   console.log(`server is running in  http://${host}:${port}`)

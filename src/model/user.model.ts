@@ -31,6 +31,7 @@ const userSchema = new Schema(
     password: { type: String, required: true },
     roles: [{ type: Schema.Types.ObjectId, ref: "role" }],
     permits: [{ type: Schema.Types.ObjectId, ref: "permit" }],
+    rfid: {type: String }
   },
   {
     timestamps: true,
