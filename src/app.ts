@@ -38,9 +38,9 @@ client.on("message", async (topic, message) => {
   // if (topic == "detpos/local_server/4") {
   // }
 
-  if (data[2] == "active") {
-     blinkLed(Number(data[3]));
-  }
+  // if (data[2] == "active") {
+  //    blinkLed(Number(data[3]));
+  // }
   //htookhant
 
   if(data[2] == "rfid" && data[1] == "device"){
@@ -120,14 +120,14 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   });
 });
 
-const defaultData = async () => {
-  lowLed();
-
-  await rp();
-};
+// const defaultData = async () => {
+//   lowLed();
+//
+//   await rp();
+// };
 //htookhant
 
-defaultData();
+// defaultData();
 //htookhant
 
 server.listen(port, () =>
