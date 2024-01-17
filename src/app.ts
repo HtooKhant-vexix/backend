@@ -16,11 +16,13 @@ import { liveDataChangeHandler } from "./connection/liveTimeData";
 import {cardRead} from './service/rfid.service'
 import { detailSaleUpdateByDevice } from "./service/detailSale.service";
 import dailyPriceRoute from "./router/dailyPrice.routes";
+import memberCardRoute from "./router/memberCard.routes";
 import dbConnect, { client, connect } from "./utils/connect";
 import blinkLed, { lowLed } from "./connection/ledBlink";
 // htookhant
 import initialSetupRoute from "./router/initialSetup.routes";
 import { rp } from "./migrations/migrator";
+import {membercardRead} from "./service/memberCard.service";
 
 const app = express();
 app.use(fileUpload());
@@ -45,7 +47,8 @@ client.on("message", async (topic, message) => {
 
   if(data[2] == "rfid" && data[1] == "device"){
     // console.log(message.toString())
-    cardRead(message.toString())
+    membercardRead(message.toString())
+    // cardRead(message.toString())
   }
 
   if (data[2] == "Final") {
@@ -105,6 +108,7 @@ app.use("/api/fuel-balance", fuelBalanceRoute);
 app.use("/api/fuelIn", fuelInRoute);
 
 app.use("/api/daily-price", dailyPriceRoute);
+app.use("/api/nfc-card/member",memberCardRoute);
 
 // app.use("/api/test", localToDeviceRoute);
 

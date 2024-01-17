@@ -68,6 +68,43 @@ export const createUserSchema = object({
     path: ["Password Confirmation"],
   }),
 });
+export const createMemberCard = object({
+  body: object({
+    name: string({
+      required_error: "Name is required",
+    }),
+    nfc_id: string({
+      required_error: "You need NFC's id",
+    }),
+    password: string({
+      required_error: "Password is required",
+    }).min(6, "Passwrod too short should be 6 characters minimum"),
+    email: string({
+      required_error: "Email is required",
+    }),
+    phone: string({
+      required_error: "phone is required",
+    }),
+     address: string({
+      required_error: "address is required",
+    }),
+     salary: string({
+      required_error: "salary is required",
+    }),
+     role: string({
+      required_error: "role is required",
+    }),
+    dob: string({
+      required_error: "dob is required",
+    }),
+    gender: string({
+      required_error: "gender is required",
+    }),
+    joiningDate: string({
+      required_error: "joiningDate is required",
+    }),
+  }),
+});
 
 export const loginUserSchema = object({
   body: object({
