@@ -14,7 +14,7 @@ export const membercardRead = async(msg)=>{
         const message = {
             email: data.email,
             password: '111111',
-            cardID: data.nfc_id
+            nfc_id: data.nfc_id
         };
         const jsonString = JSON.stringify(message);
 
