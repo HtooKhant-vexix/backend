@@ -9,7 +9,7 @@ const memberCardSchema = new Schema(
         phone: { type: String, require: true, unique: true },
         password: { type: String, require: true },
         address: { type: String, require: true },
-        salary: { type: String, require: true },
+        salary: { type: Number, require: true },
         role: { type: String, require: true },
         dob: { type: String, require: true },
         gender: { type: String, require: true },
