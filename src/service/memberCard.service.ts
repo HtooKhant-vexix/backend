@@ -11,14 +11,14 @@ export const membercardRead = async(msg)=>{
 
     console.log(data)
     if (data) {
-        // const message = {
-        //     email: data.email,
-        //     password: '111111',
-        //     cardID: data.rfid
-        // };
-        const jsonString = JSON.stringify(data);
+        const message = {
+            email: data.email,
+            password: '111111',
+            cardID: data.nfc_id
+        };
+        const jsonString = JSON.stringify(message);
 
-        console.log(data)
+        console.log(message)
 
         client.publish("detpos/local_server/rfid", jsonString, (err) => {
             if (err) {
