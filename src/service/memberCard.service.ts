@@ -12,6 +12,7 @@ export const membercardRead = async(msg)=>{
     console.log(data)
     if (data) {
         const message = {
+		con: "true",
             email: data.email,
             password: '111111',
             nfc_id: data.nfc_id
@@ -30,7 +31,7 @@ export const membercardRead = async(msg)=>{
     }else{
         client.publish("detpos/local_server/rfid", JSON.stringify({
             "con": "false",
-            "msg": "There is no member with this card !"}));
+            "msg": "no"}));
     }
 
 }

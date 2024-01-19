@@ -6,10 +6,10 @@ export default {
   saltWorkFactor: 10,
   secretKey: "suuhh",
   page_limit: 50,
+  mqttUrl: "ws://192.168.0.100:9001",
+  //mqttUrl: "ws://127.0.0.1:9001",
   // mqttUrl: "mqtt://192.168.0.10:1883",
-  mqttUrl: "mqtt://192.168.0.100:1883",
-  // mqttUrl: "ws://192.168.0.100:9001",htookhant
-  // mqttUrl: "ws://127.0.0.1:1883",
+  //  mqttUrl: "mqtt://192.168.0.100:1883",
 
   mqttUserName: "detpos",
   mqttPassword: "asdffdsa",
