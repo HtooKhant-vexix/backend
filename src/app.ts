@@ -13,7 +13,7 @@ import dailyReportRoute from "./router/dailyReport.routes";
 import fuelBalanceRoute from "./router/fuelBalance.routes";
 import fuelInRoute from "./router/fuelIn.routes";
 import { liveDataChangeHandler } from "./connection/liveTimeData";
-import {cardRead} from './service/rfid.service'
+import { cardRead } from "./service/rfid.service";
 import { detailSaleUpdateByDevice } from "./service/detailSale.service";
 import dailyPriceRoute from "./router/dailyPrice.routes";
 import memberCardRoute from "./router/memberCard.routes";
@@ -22,7 +22,7 @@ import blinkLed, { lowLed } from "./connection/ledBlink";
 // htookhant
 import initialSetupRoute from "./router/initialSetup.routes";
 import { rp } from "./migrations/migrator";
-import {membercardRead} from "./service/memberCard.service";
+import { membercardRead } from "./service/memberCard.service";
 
 const app = express();
 app.use(fileUpload());
@@ -37,17 +37,17 @@ client.on("message", async (topic, message) => {
 
   console.log(data);
 
-  // if (topic == "detpos/local_server/4") {
-  // }
+  if (topic == "detpos/local_server/4") {
+  }
 
-  // if (data[2] == "active") {
-  //    blinkLed(Number(data[3]));
-  // }
+  if (data[2] == "active") {
+    blinkLed(Number(data[3]));
+  }
   //htookhant
 
-  if(data[2] == "rfid" && data[1] == "device"){
+  if (data[2] == "rfid" && data[1] == "device") {
     // console.log(message.toString())
-    membercardRead(message.toString())
+    membercardRead(message.toString());
     // cardRead(message.toString())
   }
 
@@ -56,9 +56,9 @@ client.on("message", async (topic, message) => {
     detailSaleUpdateByDevice(data[3], message.toString());
   }
 
-    if (data[2] == "livedata") {
-      liveDataChangeHandler(message.toString());
-    }
+  if (data[2] == "livedata") {
+    liveDataChangeHandler(message.toString());
+  }
 
   //   if (topic == "detpos/local_server/price") {
   //   }
@@ -108,7 +108,7 @@ app.use("/api/fuel-balance", fuelBalanceRoute);
 app.use("/api/fuelIn", fuelInRoute);
 
 app.use("/api/daily-price", dailyPriceRoute);
-app.use("/api/nfc-card/member",memberCardRoute);
+app.use("/api/nfc-card/member", memberCardRoute);
 
 // app.use("/api/test", localToDeviceRoute);
 
@@ -124,14 +124,14 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   });
 });
 
-// const defaultData = async () => {
-//   lowLed();
-//
-//   await rp();
-// };
+const defaultData = async () => {
+  lowLed();
+
+  await rp();
+};
 //htookhant
 
-// defaultData();
+defaultData();
 //htookhant
 
 server.listen(port, () =>

@@ -4,7 +4,7 @@ let arr = [0, 17, 18, 27, 22, 23, 24, 5, 6];
 
 const blinkLed = async (ledNo: number) => {
   try {
-    let LED = new Gpio(arr[ledNo], "out");
+    let LED = new Gpio(arr[ledNo], "out"
 
     LED.writeSync(1);
 
